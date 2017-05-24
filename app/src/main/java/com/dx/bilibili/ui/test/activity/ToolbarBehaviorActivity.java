@@ -13,6 +13,7 @@ import com.dx.bilibili.model.bean.WeiXinJingXuanBean;
 import com.dx.bilibili.ui.test.mvp.contract.MvpStructureContract;
 import com.dx.bilibili.ui.test.mvp.presenter.MvpStructurePresenter;
 import com.dx.bilibili.ui.test.adapter.MvpStructureAdapter;
+import com.dx.bilibili.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class ToolbarBehaviorActivity extends BaseMvpActivity<MvpStructurePresent
 
     @Override
     protected void initViewAndEvent() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
         mToolbar.setTitle("新闻");
         setSupportActionBar(mToolbar);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -63,11 +65,6 @@ public class ToolbarBehaviorActivity extends BaseMvpActivity<MvpStructurePresent
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new MvpStructureAdapter(mContext, mList);
         recyclerView.setAdapter(mAdapter);
-    }
-
-    @Override
-    protected void initData() {
-        mPresenter.loadData();
     }
 
     @Override

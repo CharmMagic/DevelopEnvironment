@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.dx.bilibili.R;
 import com.dx.bilibili.base.BaseActivity;
 import com.dx.bilibili.ui.test.fragment.NewsFragment;
+import com.dx.bilibili.util.StatusBarUtil;
 
 import butterknife.BindView;
 
@@ -37,17 +38,13 @@ public class NewsActivity extends BaseActivity {
     }
 
     @Override
-    protected View getPaddingNeedView() {
-        return mLinearLayout;
-    }
-
-    @Override
     protected void initInject() {
         getActivityComponent().inject(this);
     }
 
     @Override
     public void initViewAndEvent() {
+        StatusBarUtil.setColorForDrawerLayout(this, getResources().getColor(R.color.colorPrimary), mLinearLayout);
         //关闭右滑返回
         setSwipeBackEnable(false);
 

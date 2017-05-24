@@ -6,4 +6,8 @@ package com.dx.bilibili.base;
 
 public interface BasePresenter {
 
+    void loadData();
+
+    void releaseData();
+
 }

@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dx.bilibili.di.component.DaggerFragmentComponent;
-import com.dx.bilibili.di.component.FragmentComponent;
 import com.dx.bilibili.app.App;
 import com.dx.bilibili.di.component.AppComponent;
+import com.dx.bilibili.di.component.DaggerFragmentComponent;
+import com.dx.bilibili.di.component.FragmentComponent;
 import com.dx.bilibili.di.module.FragmentModule;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,10 +23,13 @@ import me.yokeyword.fragmentation.SupportFragment;
  * Created by jiayiyang on 17/4/14.
  */
 
-abstract public class BaseFragment extends SupportFragment {
+abstract public class BaseMvpFragment<T extends AbsBasePresenter> extends SupportFragment implements BaseView{
 
+    @Inject
+    protected T mPresenter;
     protected Context mContext;
     private Unbinder mUnbinder;
+    private View mView;
 
     @Override
     public void onAttach(Context context) {
@@ -35,7 +40,8 @@ abstract public class BaseFragment extends SupportFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutId(), null);
+        mView = inflater.inflate(getLayoutId(), null);
+        return mView;
     }
 
     @Override
@@ -43,13 +49,28 @@ abstract public class BaseFragment extends SupportFragment {
         super.onViewCreated(view, savedInstanceState);
         mUnbinder = ButterKnife.bind(this, view);
         initInject();
+        if (mPresenter != null)
+            mPresenter.attachView(this);
         initViewAndEvent();
-        initData();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter.loadData();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPresenter.releaseData();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (mPresenter != null)
+            mPresenter.detachView();
         mUnbinder.unbind();
     }
 
@@ -81,8 +102,4 @@ abstract public class BaseFragment extends SupportFragment {
      */
     protected abstract void initViewAndEvent();
 
-    /**
-     * 初始化数据
-     */
-    protected abstract void initData();
 }

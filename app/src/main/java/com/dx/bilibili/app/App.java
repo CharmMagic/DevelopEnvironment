@@ -27,7 +27,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        registerActivityLifecycleCallbacks(new ActivityLifecycleManager());
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();

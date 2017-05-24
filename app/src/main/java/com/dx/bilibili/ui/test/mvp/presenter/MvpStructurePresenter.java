@@ -70,4 +70,9 @@ public class MvpStructurePresenter extends AbsBasePresenter<MvpStructureContract
     public void deleteData() {
 
     }
+
+    @Override
+    public void releaseData() {
+
+    }
 }

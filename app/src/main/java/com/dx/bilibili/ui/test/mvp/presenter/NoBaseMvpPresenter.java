@@ -32,4 +32,10 @@ public class NoBaseMvpPresenter extends AbsBasePresenter<MvpStructureContract.Vi
     public void deleteData() {
 
     }
+
+    @Override
+    public void releaseData() {
+
+    }
+
 }

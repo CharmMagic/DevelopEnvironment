@@ -11,7 +11,7 @@ public class NewsPageFragment extends BaseFragment {
 
 
     @Override
-    protected int setContentView() {
+    protected int getLayoutId() {
         return R.layout.fragment_page_news;
     }
 

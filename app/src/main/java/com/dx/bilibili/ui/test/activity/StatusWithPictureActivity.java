@@ -11,8 +11,8 @@ import com.dx.bilibili.base.BaseMvpActivity;
 import com.dx.bilibili.model.bean.WeiXinJingXuanBean;
 import com.dx.bilibili.ui.test.mvp.contract.MvpStructureContract;
 import com.dx.bilibili.ui.test.adapter.MvpStructureAdapter;
-import com.dx.bilibili.util.StatusBarUtils;
 import com.dx.bilibili.ui.test.mvp.presenter.MvpStructurePresenter;
+import com.dx.bilibili.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +34,6 @@ public class StatusWithPictureActivity extends BaseMvpActivity<MvpStructurePrese
     private List<WeiXinJingXuanBean.NewsList> mList = new ArrayList<>();
 
     @Override
-    protected boolean setCustomStatusBar() {
-        return true;
-    }
-
-    @Override
     protected int getLayoutId() {
         return R.layout.activity_status_picture;
     }
@@ -56,7 +51,7 @@ public class StatusWithPictureActivity extends BaseMvpActivity<MvpStructurePrese
     @Override
     protected void initViewAndEvent() {
         //自定义statusbar样式,与toolbar融合
-        StatusBarUtils.setStatusBarMergeWithToolBar(mToolbar, this);
+        StatusBarUtil.setStatusBarMergeWithTopView(this, mToolbar);
         mToolbar.setTitle("新闻");
         setSupportActionBar(mToolbar);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -68,11 +63,6 @@ public class StatusWithPictureActivity extends BaseMvpActivity<MvpStructurePrese
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new MvpStructureAdapter(mContext, mList);
         recyclerView.setAdapter(mAdapter);
-    }
-
-    @Override
-    protected void initData() {
-        mPresenter.loadData();
     }
 
     @Override

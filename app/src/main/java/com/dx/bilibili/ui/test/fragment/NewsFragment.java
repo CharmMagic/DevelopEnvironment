@@ -30,7 +30,7 @@ public class NewsFragment extends BaseFragment {
     private String[] mTitles = {"Tab1", "Tab2", "Tab333344", "Tab4", "Tab5", "Tab6"};
 
     @Override
-    protected int setContentView() {
+    protected int getLayoutId() {
         return R.layout.fragment_news;
     }
 

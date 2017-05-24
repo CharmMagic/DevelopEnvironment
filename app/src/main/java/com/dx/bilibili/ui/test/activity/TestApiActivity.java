@@ -20,6 +20,7 @@ import com.dx.bilibili.model.bean.ResultList;
 import com.dx.bilibili.model.bean.ResultObject;
 import com.dx.bilibili.model.bean.SplashResponse;
 import com.dx.bilibili.util.DateUtil;
+import com.dx.bilibili.util.StatusBarUtil;
 
 import javax.inject.Inject;
 
@@ -48,7 +49,7 @@ public class TestApiActivity extends BaseActivity {
 
     @Override
     protected void initViewAndEvent() {
-
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
     }
 
     @Override

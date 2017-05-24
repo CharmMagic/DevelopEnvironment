@@ -54,9 +54,6 @@
             android:name=".ui.test.activity.TestApiActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.test.activity.TestNoBaseActivity" />
-        <activity android:name=".ui.test.activity.TestNoBaseMvpActivity" />
-        <activity android:name=".ui.main.activity.MainActivity"></activity>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by jiayiyang on 17/3/25.
  */
 
-public abstract class AbsBasePresenter<T extends BaseView> {
+public abstract class AbsBasePresenter<T extends BaseView> implements BasePresenter {
 
     protected T mView;
     protected CompositeSubscription mCompositeSubscription;

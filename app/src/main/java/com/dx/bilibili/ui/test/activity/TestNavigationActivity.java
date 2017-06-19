@@ -58,7 +58,7 @@ public class TestNavigationActivity extends BaseActivity {
 
     @Override
     protected void initInject() {
-
+//
     }
 
     @Override

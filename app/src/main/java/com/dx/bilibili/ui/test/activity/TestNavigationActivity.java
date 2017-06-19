@@ -60,6 +60,7 @@ public class TestNavigationActivity extends BaseActivity {
     protected void initInject() {
 //
         //
+        //
     }
 
     @Override

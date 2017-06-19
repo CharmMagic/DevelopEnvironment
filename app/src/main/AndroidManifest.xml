@@ -54,6 +54,14 @@
             android:name=".ui.test.activity.TestApiActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <!-- 测试Room -->
+        <activity
+            android:name=".ui.test.activity.TestRoomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <service android:name=".app.MyService" />
     </application>
 
 </manifest>

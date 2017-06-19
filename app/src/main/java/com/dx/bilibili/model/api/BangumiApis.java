@@ -4,9 +4,9 @@ import com.dx.bilibili.di.scope.ApiInfo;
 import com.dx.bilibili.model.bean.BangumiIndexPageResponse;
 import com.dx.bilibili.model.bean.ResultObject;
 
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by jiayiyang on 17/3/26.
@@ -22,10 +22,10 @@ public interface BangumiApis {
      */
     @GET("/appindex/follow_index_page")
     @ApiInfo(needSigned = true)
-    Observable<ResultObject<BangumiIndexPageResponse>> getIndexPage(@Query("appkey") String appkey,
-                                                                    @Query("build") String build,
-                                                                    @Query("mobi_app") String mobi_app,
-                                                                    @Query("platform") String platform,
-                                                                    @Query("ts") String ts
+    Flowable<ResultObject<BangumiIndexPageResponse>> getIndexPage(@Query("appkey") String appkey,
+                                                                  @Query("build") String build,
+                                                                  @Query("mobi_app") String mobi_app,
+                                                                  @Query("platform") String platform,
+                                                                  @Query("ts") String ts
     );
 }

@@ -9,11 +9,12 @@ import com.dx.bilibili.model.api.WeChatApis;
 
 import javax.inject.Inject;
 
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by jiayiyang on 17/3/25.
@@ -32,38 +33,28 @@ public class MvpStructurePresenter extends AbsBasePresenter<MvpStructureContract
 
     @Override
     public void loadData() {
-        Subscription rxSubscription2 = weChatApis.getWeiXinJingXuan(WeChatApis.KEY, 25, 1)
+        Disposable disposable = weChatApis.getWeiXinJingXuan(WeChatApis.KEY, 25, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
-                .doOnNext(new Action1<WeiXinJingXuanBean>() {
+                .doOnNext(new Consumer<WeiXinJingXuanBean>() {
                     @Override
-                    public void call(WeiXinJingXuanBean weiXinJingXuanBean) {
+                    public void accept(@NonNull WeiXinJingXuanBean weiXinJingXuanBean) throws Exception {
 
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<WeiXinJingXuanBean>() {
+                .subscribe(new Consumer<WeiXinJingXuanBean>() {
                     @Override
-                    public void onStart() {
-                        mView.setRefreshing();
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        Log.d("misery", "onCompleted");
-                    }
-
-                    @Override
-                    public void onNext(WeiXinJingXuanBean weiXinJingXuanBean) {
+                    public void accept(@NonNull WeiXinJingXuanBean weiXinJingXuanBean) throws Exception {
                         mView.updateData(weiXinJingXuanBean.getNewslist());
                     }
-
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void onError(Throwable e) {
+                    public void accept(@NonNull Throwable throwable) throws Exception {
                         Log.d("misery", "onError");
                     }
                 });
-        addSubscrebe(rxSubscription2);
+        register(disposable);
     }
 
     @Override

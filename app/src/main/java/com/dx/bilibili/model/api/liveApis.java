@@ -7,9 +7,9 @@ import com.dx.bilibili.model.bean.LiveRecommendResponse;
 import com.dx.bilibili.model.bean.ResultList;
 import com.dx.bilibili.model.bean.ResultObject;
 
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by jiayiyang on 17/5/2.
@@ -25,7 +25,7 @@ public interface LiveApis {
      */
     @GET("/AppNewIndex/recommend")
     @ApiInfo(needSigned = true)
-    Observable<ResultObject<LiveRecommendResponse>> getRecommend(@Query("_device") String _device,
+    Flowable<ResultObject<LiveRecommendResponse>> getRecommend(@Query("_device") String _device,
                                                                  @Query("appkey") String appkey,
                                                                  @Query("build") String build,
                                                                  @Query("mobi_app") String mobi_app,
@@ -40,7 +40,7 @@ public interface LiveApis {
      */
     @GET("/AppNewIndex/common")
     @ApiInfo(needSigned = true)
-    Observable<ResultObject<LiveCommonResponse>> getCommon(@Query("_device") String _device,
+    Flowable<ResultObject<LiveCommonResponse>> getCommon(@Query("_device") String _device,
                                                            @Query("appkey") String appkey,
                                                            @Query("build") String build,
                                                            @Query("mobi_app") String mobi_app,
@@ -55,7 +55,7 @@ public interface LiveApis {
      */
     @GET("/AppIndex/areas")
     @ApiInfo(needSigned = true)
-    Observable<ResultList<LiveAreasResponse>> getAreas(@Query("_device") String _device,
+    Flowable<ResultList<LiveAreasResponse>> getAreas(@Query("_device") String _device,
                                                        @Query("appkey") String appkey,
                                                        @Query("build") String build,
                                                        @Query("mobi_app") String mobi_app,

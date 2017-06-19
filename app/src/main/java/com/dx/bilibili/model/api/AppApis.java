@@ -9,9 +9,9 @@ import com.dx.bilibili.model.bean.ResultList;
 import com.dx.bilibili.model.bean.ResultObject;
 import com.dx.bilibili.model.bean.SplashResponse;
 
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by jiayiyang on 17/3/26.
@@ -31,7 +31,7 @@ public interface AppApis {
      */
     @GET("/x/v2/splash")
     @ApiInfo(needSigned = false)
-    Observable<ResultList<SplashResponse>> getSplash(@Query("mobi_app") String mobi_app,
+    Flowable<ResultList<SplashResponse>> getSplash(@Query("mobi_app") String mobi_app,
                                                      @Query("build") String build,
                                                      @Query("channel") String channel,
                                                      @Query("width") int width,
@@ -46,7 +46,7 @@ public interface AppApis {
      */
     @GET("/x/feed/index")
     @ApiInfo(needSigned = true)
-    Observable<ResultList<IndexResponse>> getIndex(@Query("appkey") String appkey,
+    Flowable<ResultList<IndexResponse>> getIndex(@Query("appkey") String appkey,
                                                    @Query("build") String build,
                                                    @Query("idx") String idx,
                                                    @Query("mobi_app") String mobi_app,
@@ -63,7 +63,7 @@ public interface AppApis {
      */
     @GET("/x/v2/region")
     @ApiInfo(needSigned = false)
-    Observable<ResultList<RegionResponse>> getRegion(@Query("build") String build);
+    Flowable<ResultList<RegionResponse>> getRegion(@Query("build") String build);
 
     /**
      * 获取分区列表
@@ -71,7 +71,7 @@ public interface AppApis {
      */
     @GET("/x/v2/show/region")
     @ApiInfo(needSigned = true)
-    Observable<ResultList<RegionShowResponse>> getRegionShow(@Query("appkey") String appkey,
+    Flowable<ResultList<RegionShowResponse>> getRegionShow(@Query("appkey") String appkey,
                                                              @Query("build") String build,
                                                              @Query("mobi_app") String mobi_app,
                                                              @Query("platform") String platform,
@@ -84,7 +84,7 @@ public interface AppApis {
      */
     @GET("/x/v2/search/hot")
     @ApiInfo(needSigned = true)
-    Observable<ResultObject<SearchHotResponse>> getSerchHot(@Query("appkey") String appkey,
+    Flowable<ResultObject<SearchHotResponse>> getSerchHot(@Query("appkey") String appkey,
                                                             @Query("build") String build,
                                                             @Query("limit") int limit,
                                                             @Query("mobi_app") String mobi_app,

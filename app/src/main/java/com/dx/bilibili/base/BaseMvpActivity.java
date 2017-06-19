@@ -1,29 +1,21 @@
 package com.dx.bilibili.base;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 
-import com.dx.bilibili.R;
 import com.dx.bilibili.di.component.DaggerActivityComponent;
 import com.dx.bilibili.di.module.ActivityModule;
 import com.dx.bilibili.app.App;
 import com.dx.bilibili.di.component.ActivityComponent;
 import com.dx.bilibili.di.component.AppComponent;
-import com.dx.bilibili.util.StatusBarUtils;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
-import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
 
 /**
  * Created by jiayiyang on 17/3/22.

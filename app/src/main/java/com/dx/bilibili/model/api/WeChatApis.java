@@ -3,10 +3,10 @@ package com.dx.bilibili.model.api;
 import com.dx.bilibili.di.scope.ApiInfo;
 import com.dx.bilibili.model.bean.WeiXinJingXuanBean;
 
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by jiayiyang on 17/3/26.
@@ -28,7 +28,7 @@ public interface WeChatApis {
      */
     @GET("wxnew")
     @ApiInfo(needSigned = false)
-    Observable<WeiXinJingXuanBean> getWeiXinJingXuan(@Query("key") String key, @Query("num") int num, @Query("page") int page);
+    Flowable<WeiXinJingXuanBean> getWeiXinJingXuan(@Query("key") String key, @Query("num") int num, @Query("page") int page);
 
     @GET("wxnew")
     @ApiInfo(needSigned = false)

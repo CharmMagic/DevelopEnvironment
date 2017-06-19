@@ -1,10 +1,15 @@
 package com.dx.bilibili.ui.test.activity;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.dx.bilibili.R;
+import com.dx.bilibili.app.MyService;
 import com.dx.bilibili.base.BaseActivity;
 import com.dx.bilibili.util.StatusBarUtil;
 
@@ -23,6 +28,28 @@ public class TestNavigationActivity extends BaseActivity {
     Button btnScrollGradient;
     @BindView(R.id.test_api_btn)
     Button btnTestApi;
+    @BindView(R.id.test_room_btn)
+    Button btnTestRoom;
+    @BindView(R.id.test_service_btn)
+    Button btnTestService;
+    @BindView(R.id.test_unbind_btn)
+    Button btnTestUnBind;
+
+    private MyService.MyBinder myBinder;
+
+    private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.d("misery","onServiceDisconnected componentName : "+name);
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myBinder = (MyService.MyBinder) service;
+            myBinder.startDownload();
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -43,9 +70,19 @@ public class TestNavigationActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        Intent intent = new Intent(this, MyService.class);
+        startService(intent);
     }
 
-    @OnClick({R.id.toolbar_behavior_mvp_btn, R.id.news_btn, R.id.status_picture_mvp_btn, R.id.scroll_gradient_mvp_btn, R.id.test_api_btn})
+    @OnClick({R.id.toolbar_behavior_mvp_btn,
+            R.id.news_btn,
+            R.id.status_picture_mvp_btn,
+            R.id.scroll_gradient_mvp_btn,
+            R.id.test_api_btn,
+            R.id.test_room_btn,
+            R.id.test_service_btn,
+            R.id.test_unbind_btn
+    })
     public void jumpToPage(View view){
         switch (view.getId()){
             case R.id.toolbar_behavior_mvp_btn:
@@ -62,6 +99,15 @@ public class TestNavigationActivity extends BaseActivity {
                 break;
             case R.id.test_api_btn:
                 startActivity(new Intent(mContext, TestApiActivity.class));
+                break;
+            case R.id.test_room_btn:
+                startActivity(new Intent(mContext, TestRoomActivity.class));
+            case R.id.test_service_btn:
+                Intent bindIntent = new Intent(this, MyService.class);
+                bindService(bindIntent, connection, BIND_AUTO_CREATE);
+                break;
+            case R.id.test_unbind_btn:
+                unbindService(connection);
                 break;
         }
     }

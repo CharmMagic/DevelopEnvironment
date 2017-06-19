@@ -24,9 +24,11 @@ import com.dx.bilibili.util.StatusBarUtil;
 
 import javax.inject.Inject;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class TestApiActivity extends BaseActivity {
 
@@ -57,90 +59,135 @@ public class TestApiActivity extends BaseActivity {
         appApis.getRegionShow(ApiHelper.getAppKey(),ApiHelper.getBUILD(),ApiHelper.getMobiApp(), ApiHelper.getPLATFORM(), DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultList<RegionShowResponse>>() {
+                .subscribe(new Consumer<ResultList<RegionShowResponse>>() {
                     @Override
-                    public void call(ResultList<RegionShowResponse> regionShowResponseResultList) {
-                        Log.d("misery", "regionShowResponseResultList="+ regionShowResponseResultList);
+                    public void accept(ResultList<RegionShowResponse> regionShowResponseResultList) {
+                        Log.d("misery", "regionShowResponseResultList=" + regionShowResponseResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getRegionShow throwable:"+throwable.getMessage());
                     }
                 });
 
         appApis.getRegion(ApiHelper.getBUILD())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultList<RegionResponse>>() {
+                .subscribe(new Consumer<ResultList<RegionResponse>>() {
                     @Override
-                    public void call(ResultList<RegionResponse> regionResponseResultList) {
+                    public void accept(ResultList<RegionResponse> regionResponseResultList) {
                         Log.d("misery", "regionResponseResultList="+ regionResponseResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getRegion throwable:"+throwable.getMessage());
                     }
                 });
 
         appApis.getIndex(ApiHelper.getAppKey(), ApiHelper.getBUILD(), "1493277505", ApiHelper.getMobiApp(), "wifi", ApiHelper.getPLATFORM(), "true", DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultList<IndexResponse>>() {
+                .subscribe(new Consumer<ResultList<IndexResponse>>() {
                     @Override
-                    public void call(ResultList<IndexResponse> indexResponseResultList) {
+                    public void accept(ResultList<IndexResponse> indexResponseResultList) {
                         Log.d("misery", "indexResponseResultList="+ indexResponseResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getIndex throwable:"+throwable.getMessage());
                     }
                 });
 
         appApis.getSplash(ApiHelper.getMobiApp(), ApiHelper.getBUILD(), AppApis.CHANNEL, 1080, 1920, AppApis.VER)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultList<SplashResponse>>() {
+                .subscribe(new Consumer<ResultList<SplashResponse>>() {
                     @Override
-                    public void call(ResultList<SplashResponse> splashResponseResultList) {
+                    public void accept(ResultList<SplashResponse> splashResponseResultList) {
                         Log.d("misery", "splashResponseResultList="+ splashResponseResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getSplash throwable:"+throwable.getMessage());
                     }
                 });
 
         liveApis.getCommon(ApiHelper.getDevice(), ApiHelper.getAppKey(), ApiHelper.getBUILD(), ApiHelper.getMobiApp(), ApiHelper.getPLATFORM(), ApiHelper.getScale(), DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultObject<LiveCommonResponse>>() {
+                .subscribe(new Consumer<ResultObject<LiveCommonResponse>>() {
                     @Override
-                    public void call(ResultObject<LiveCommonResponse> liveCommonResultList) {
+                    public void accept(ResultObject<LiveCommonResponse> liveCommonResultList) {
                         Log.d("misery", "liveCommonResultList="+ liveCommonResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getCommon throwable:"+throwable.getMessage());
                     }
                 });
 
         liveApis.getRecommend(ApiHelper.getDevice(), ApiHelper.getAppKey(), ApiHelper.getBUILD(), ApiHelper.getMobiApp(), ApiHelper.getPLATFORM(), ApiHelper.getScale(), DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultObject<LiveRecommendResponse>>() {
+                .subscribe(new Consumer<ResultObject<LiveRecommendResponse>>() {
                     @Override
-                    public void call(ResultObject<LiveRecommendResponse> liveRecommendResponseResultList) {
+                    public void accept(ResultObject<LiveRecommendResponse> liveRecommendResponseResultList) {
                         Log.d("misery", "liveRecommendResponseResultList="+ liveRecommendResponseResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getRecommend throwable:"+throwable.getMessage());
                     }
                 });
 
         liveApis.getAreas(ApiHelper.getDevice(), ApiHelper.getAppKey(), ApiHelper.getBUILD(), ApiHelper.getMobiApp(), ApiHelper.getPLATFORM(), ApiHelper.getScale(), DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultList<LiveAreasResponse>>() {
+                .subscribe(new Consumer<ResultList<LiveAreasResponse>>() {
                     @Override
-                    public void call(ResultList<LiveAreasResponse> liveAreasResponseResultList) {
+                    public void accept(ResultList<LiveAreasResponse> liveAreasResponseResultList) {
                         Log.d("misery", "liveAreasResponseResultList="+ liveAreasResponseResultList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getAreas throwable:"+throwable.getMessage());
                     }
                 });
 
         bangumiApis.getIndexPage(ApiHelper.getAppKey(),ApiHelper.getBUILD(), ApiHelper.getMobiApp(), ApiHelper.getPLATFORM(), DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultObject<BangumiIndexPageResponse>>() {
+                .subscribe(new Consumer<ResultObject<BangumiIndexPageResponse>>() {
                     @Override
-                    public void call(ResultObject<BangumiIndexPageResponse> bangumiIndexPageResponseResultObject) {
+                    public void accept(ResultObject<BangumiIndexPageResponse> bangumiIndexPageResponseResultObject) {
                         Log.d("misery", "bangumiIndexPageResponseResultObject="+bangumiIndexPageResponseResultObject);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getIndexPage throwable:"+throwable.getMessage());
                     }
                 });
 
         appApis.getSerchHot(ApiHelper.getMobiApp(), ApiHelper.getBUILD(), 50, ApiHelper.getMobiApp(), ApiHelper.getPLATFORM(), DateUtil.getSystemTime())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResultObject<SearchHotResponse>>() {
+                .subscribe(new Consumer<ResultObject<SearchHotResponse>>() {
                     @Override
-                    public void call(ResultObject<SearchHotResponse> appSerchHotResponseResultObject) {
+                    public void accept(ResultObject<SearchHotResponse> appSerchHotResponseResultObject) {
                         Log.d("misery", "appSerchHotResponseResultObject="+ appSerchHotResponseResultObject);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d("misery","getSerchHot throwable:"+throwable.getMessage());
                     }
                 });
     }

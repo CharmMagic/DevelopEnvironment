@@ -1,11 +1,10 @@
 package com.dx.bilibili.model.api;
 
-
 import com.dx.bilibili.di.scope.ApiInfo;
 import com.dx.bilibili.model.bean.HotListBean;
 
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
-import rx.Observable;
 
 /**
  * Created by yangjiayi on 2017/3/25.
@@ -20,5 +19,5 @@ public interface ZhihuApis {
      */
     @GET("news/hot")
     @ApiInfo(needSigned = false)
-    Observable<HotListBean>  getHotList();
+    Flowable<HotListBean> getHotList();
 }

@@ -70,6 +70,7 @@ public class TestNavigationActivity extends BaseActivity {
         //
         //make conflict
         //make conflict a2
+        //
     }
 
     @Override

@@ -73,6 +73,7 @@ public class TestNavigationActivity extends BaseActivity {
         //make conflict a3
         //dev commit
         //test commit
+        //dev commit 2
     }
 
     @Override

@@ -74,6 +74,7 @@ public class TestNavigationActivity extends BaseActivity {
         //master commit
         //dev commit
         //test commit
+        //dev commit 2
     }
 
     @Override

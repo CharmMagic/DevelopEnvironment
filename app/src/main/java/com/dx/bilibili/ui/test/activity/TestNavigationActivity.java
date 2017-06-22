@@ -63,6 +63,10 @@ public class TestNavigationActivity extends BaseActivity {
         //dev
     }
 
+    private void newMethod1(){
+        
+    }
+
     @Override
     protected void initViewAndEvent() {
         //关闭右滑返回

@@ -58,24 +58,7 @@ public class TestNavigationActivity extends BaseActivity {
 
     @Override
     protected void initInject() {
-//
         //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //make conflict
-        //make conflict a2
-        //make conflict a3
-        //master commit
-        //dev commit
-        //test commit
-        //dev commit 2
-        //1
     }
 
     @Override

@@ -63,8 +63,8 @@ public class TestNavigationActivity extends BaseActivity {
         //dev
     }
 
-    private void newMethod2(){
-
+    private void newMethod1(){
+        //dev1
     }
 
     @Override

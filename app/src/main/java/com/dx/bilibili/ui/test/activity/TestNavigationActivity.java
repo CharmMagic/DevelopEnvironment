@@ -114,6 +114,7 @@ public class TestNavigationActivity extends BaseActivity {
                 break;
             case R.id.test_unbind_btn:
                 unbindService(connection);
+                //master1
                 break;
         }
     }

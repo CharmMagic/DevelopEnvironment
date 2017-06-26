@@ -69,6 +69,7 @@ public class TestNavigationActivity extends BaseActivity {
         //dev4
         //dev5
         //dev6
+        //dev7
     }
 
     @Override

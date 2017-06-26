@@ -66,6 +66,7 @@ public class TestNavigationActivity extends BaseActivity {
     private void newMethod1(){
         //dev1
         //dev2
+        //dev4
     }
 
     @Override

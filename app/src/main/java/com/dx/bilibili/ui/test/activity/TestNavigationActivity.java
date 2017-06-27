@@ -61,6 +61,7 @@ public class TestNavigationActivity extends BaseActivity {
         //
         //master
         //dev
+        //1 in dev2
     }
 
     private void newMethod1(){
